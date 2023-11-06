@@ -1,0 +1,38 @@
+{
+	"appId": "com.electron.tailwind.sveltekit.starter",
+	"productName": "Electron Tailwind Sveltekit Starter",
+	"compression": "maximum",
+	"publish": {
+		"provider": "github",
+		"owner": "EnergyPatrikHU",
+		"repo": "electron-tailwind-sveltekit-starter",
+		"releaseType": "release",
+		"publishAutoUpdate": true
+	},
+	"directories": {
+		"output": "dist"
+	},
+	"win": {
+		"target": "nsis"
+	},
+	"nsis": {
+		"createDesktopShortcut": true,
+		"oneClick": false,
+		"allowToChangeInstallationDirectory": true,
+		"perMachine": true
+	},
+	"files": [
+		"resources/app/**/*.cjs",
+		{
+			"from": "build",
+			"to": ""
+		}
+	],
+	"extraResources": [
+		{
+			"from": "./resources/extraResources/",
+			"to": "",
+			"filter": ["**/*"]
+		}
+	]
+}

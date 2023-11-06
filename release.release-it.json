@@ -1,0 +1,9 @@
+{
+	"git": {
+		"tagAnnotation": "Release ${version}"
+	},
+	"github": {
+		"release": false,
+		"tokenRef": "GH_TOKEN"
+	}
+}

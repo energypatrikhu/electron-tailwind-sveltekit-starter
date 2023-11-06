@@ -1,0 +1,67 @@
+{
+	"name": "electron-tailwind-sveltekit-starter",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Electron Tailwind Sveltekit Starter",
+	"main": "resources/app/electron.cjs",
+	"type": "module",
+	"author": "EnergyPatrikHU",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/energypatrikhu/electron-tailwind-sveltekit-starter.git"
+	},
+	"scripts": {
+		"dev": "cross-env-file -p .env.dev.json concurrently --kill-others -n=svelte,electron -c='#ff3e00',blue \"vite dev\" \"node electron.esbuild.config.mjs && electron resources/app/electron.cjs\"",
+		"clear-dist": "node rm.mjs ./dist",
+		"pack:electron": "cross-env-file -p .env.prod.json node electron.esbuild.config.mjs",
+		"pack:vite": "cross-env-file -p .env.prod.json vite build",
+		"build:electron": "npm run clear-dist && cross-env-file -p .env.prod.json electron-builder -w --config build.config.json",
+		"build:electron:release": "npm run clear-dist && cross-env-file -p .env.prod.json electron-builder -p always -w --config build.config.json",
+		"release-it:release": "cross-env-file -p .env.prod.json release-it --config release.release-it.json",
+		"build": "npm run pack:electron && npm run pack:vite && npm run build:electron",
+		"release": "npm run release-it:release && npm run pack:electron && npm run pack:vite && npm run build:electron:release"
+	},
+	"browserslist": [
+		"Chrome 89"
+	],
+	"dependencies": {
+		"electron-context-menu": "^3.6.1",
+		"electron-reloader": "^1.2.3",
+		"electron-serve": "^1.1.0",
+		"electron-updater": "^6.1.4",
+		"electron-window-state": "^5.0.3",
+		"lodash": "latest",
+		"moment": "^2.29.4"
+	},
+	"devDependencies": {
+		"@material-symbols/svg-400": "^0.13.2",
+		"@poppanator/sveltekit-svg": "^4.1.3",
+		"@sveltejs/adapter-static": "^2.0.3",
+		"@sveltejs/kit": "^1.27.2",
+		"@types/lodash": "^4.14.200",
+		"@types/node": "^20.8.10",
+		"autoprefixer": "^10.4.16",
+		"concurrently": "^8.2.2",
+		"cross-env-file": "^1.0.0",
+		"dotenv": "^16.3.1",
+		"electron": "^27.0.2",
+		"electron-builder": "^24.6.4",
+		"electron-connect": "^0.6.3",
+		"electron-packager": "^17.1.2",
+		"esbuild": "^0.19.5",
+		"npm-run-all": "^4.1.5",
+		"postcss": "^8.4.31",
+		"postcss-advanced-variables": "^3.0.1",
+		"postcss-calc": "^9.0.1",
+		"release-it": "^16.2.1",
+		"svelte": "^4.2.2",
+		"svelte-check": "^3.5.2",
+		"svelte-preprocess": "^5.0.4",
+		"tailwindcss": "^3.3.5",
+		"tailwindcss-all": "^0.0.2",
+		"terser": "^5.24.0",
+		"tslib": "^2.6.2",
+		"typescript": "^5.2.2",
+		"vite": "^4.5.0"
+	}
+}

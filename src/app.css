@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+	@apply text-white bg-neutral-800;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	color: white;
+	-webkit-text-fill-color: white;
+	-webkit-transition: background-color 9999999s ease-in-out 0s;
+	transition: background-color 9999999s ease-in-out 0s;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb,
+.no-scrollbar::-webkit-scrollbar-thumb:hover,
+.no-scrollbar::-webkit-scrollbar {
+	width: 0 !important;
+	background-color: transparent !important;
+}
+
+.small-scrollbar::-webkit-scrollbar {
+	width: 2px !important;
+}
+
+html:not([hide-scrollbar]) ::-webkit-scrollbar-thumb {
+	--tw-bg-opacity: 1;
+	background-color: rgb(115 115 115 / var(--tw-bg-opacity));
+	height: 5%;
+	border-radius: 5px;
+}
+
+html:not([hide-scrollbar]) ::-webkit-scrollbar-thumb:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgb(163 163 163 / var(--tw-bg-opacity));
+}
+
+html:not([hide-scrollbar]) ::-webkit-scrollbar {
+	width: 10px;
+}

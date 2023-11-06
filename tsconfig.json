@@ -1,0 +1,38 @@
+{
+	"extends": "./.svelte-kit/tsconfig.json",
+	"compilerOptions": {
+		"module": "esnext",
+		"target": "es2020",
+		"moduleResolution": "node",
+		"strict": true,
+		"types": ["vite/client", "node"],
+		"typeRoots": ["node_modules/@types"],
+		"lib": ["ESNext", "DOM"],
+		"importsNotUsedAsValues": "error",
+		"isolatedModules": true,
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"baseUrl": ".",
+		"allowJs": true,
+		"checkJs": false,
+		"resolveJsonModule": true,
+		"paths": {
+			"$components": ["src/components"],
+			"$components/*": ["src/components/*"],
+			"$libs": ["src/libs"],
+			"$libs/*": ["src/libs/*"],
+			"$stores": ["src/stores"],
+			"$stores/*": ["src/stores/*"],
+			"$types": ["src/types"],
+			"$types/*": ["src/types/*"],
+			"$static": ["static"],
+			"$static/*": ["static/*"],
+			"$css": ["src/css"],
+			"$css/*": ["src/css/*"],
+			"$app/*": [".svelte/dev/runtime/app/*", ".svelte/build/runtime/app/*"]
+		}
+	},
+	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.svelte", "src/**/*.cjs", "src/**/*.js"]
+}
