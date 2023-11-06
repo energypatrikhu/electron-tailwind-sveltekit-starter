@@ -18,7 +18,7 @@ This template comes with:
 - if you edit any files related to electron in dev mode, you have to restart the dev server each time to re-build your electron scripts (needs fix)
 - when importing custom scripts into your electron script, you have to append your files with `.js` to work
     - Example: `import func from './libs/func';` -> `import func from './libs/func.js';`
-- if you want to build a release to your github repo run `[npm/yarn/pnpm] run release`, else run `[npm/yarn/pnpm] run build`ű
+- if you want to build a release to your github repo run `[npm/yarn/pnpm] run release`, else run `[npm/yarn/pnpm] run build`
 
 # .ENV (IMPORTANT)
 - remove the `(dot)` from the begining of your dotenv files
