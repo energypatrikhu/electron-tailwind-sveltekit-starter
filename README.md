@@ -5,7 +5,7 @@ This template comes with:
 - PreConfigured SVG loader
 - Opt-In Auto Updater
 - Auto `extraResources` include
-    - Create a folder in root: `src/resources/extraResources` and put your extra files there
+    - Create a folder in root: `resources/extraResources` and put your extra files there
 - Auto GitHub Release creator with [Release-It](https://github.com/release-it/release-it)
 - dotenv support with [cross-env-file](https://github.com/marcojakob/cross-env-file) (prod & dev)
 
