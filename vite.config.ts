@@ -12,7 +12,7 @@ import type { SvgSrcFolderIcons } from './src/types/Svgs.js';
 
 function copyUsedMaterialSymbols() {
 	return new Promise<void>(async (resolve) => {
-		let nodeModulesSvgs = '/node_modules/@material-symbols/svg-400/rounded/';
+		let nodeModulesSvgs = './node_modules/@material-symbols/svg-400/rounded/';
 		let srcSvgs = './src/svg/symbols/';
 
 		let { symbols } = availableSvgs;
