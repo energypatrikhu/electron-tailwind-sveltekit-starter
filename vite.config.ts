@@ -10,8 +10,6 @@ import { availableSvgs } from './src/libs/functions/__svg.js';
 
 import type { SvgSrcFolderIcons } from './src/types/Svgs.js';
 
-const isDev = process.env.NODE_ENV === 'dev';
-
 function copyUsedMaterialSymbols() {
 	return new Promise<void>(async (resolve) => {
 		let nodeModulesSvgs = '/node_modules/@material-symbols/svg-400/rounded/';
