@@ -18,7 +18,7 @@
 	});
 
 	// Disable middle mouse click for opening links in new window
-	document.addEventListener('auxclick', function (mouseEvent) {
+	window.addEventListener('auxclick', function (mouseEvent) {
 		mouseEvent.preventDefault();
 		mouseEvent.stopPropagation();
 	});
