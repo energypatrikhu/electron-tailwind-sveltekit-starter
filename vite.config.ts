@@ -17,7 +17,7 @@ function copyUsedMaterialSymbols() {
 		let nodeModulesSvgs = '/node_modules/@material-symbols/svg-400/rounded/';
 		let srcSvgs = './src/svg/symbols/';
 
-		let { symbols } = { availableSvgs } as any;
+		let { symbols } = availableSvgs;
 		for (let symbol of symbols) {
 			if (!existsSync(`${nodeModulesSvgs}${symbol}.svg`)) {
 				throw new Error('SVG does not exists!');
