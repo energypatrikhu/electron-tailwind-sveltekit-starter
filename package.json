@@ -2,7 +2,7 @@
   "name": "electron-tailwind-sveltekit-starter",
   "version": "0.0.1",
   "private": true,
-  "description": "Tile Joiner",
+  "description": "Electron Tailwind SvelteKit Starter",
   "main": "resources/app/electron.mjs",
   "type": "module",
   "author": "EnergyPatrikHU",
