@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "description": "Tile Joiner",
-  "main": "resources/app/electron.cjs",
+  "main": "resources/app/electron.mjs",
   "type": "module",
   "author": "EnergyPatrikHU",
   "repository": {
