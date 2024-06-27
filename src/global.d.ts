@@ -50,6 +50,9 @@ type WindowElectronReceiveEvent = (
 //
 // Events
 //
+// Send -> From Renderer (WebContent) to Main (Electron)
+// Receive -> From Main (Electron) to Renderer (WebContent)
+//
 interface ElectronEventData {
   electron: {
     ready: {
