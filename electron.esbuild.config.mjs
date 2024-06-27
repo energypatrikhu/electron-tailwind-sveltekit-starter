@@ -1,48 +1,69 @@
 import { build } from 'esbuild';
-import { existsSync } from 'node:fs';
-import { readFile, readdir, rm, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { existsSync } from 'fs';
+import { readFile, readdir, rm, writeFile } from 'fs/promises';
+import { join } from 'path';
 
 const __source = './src/electron';
 const __destination = './resources/app';
 const isDev = process.env.NODE_ENV === 'dev';
 
-if (existsSync(__destination)) {
-	(async function removeOldEntries(absoluteDir) {
-		for (const dirent of await readdir(absoluteDir, { withFileTypes: true })) {
-			const direntDir = join(absoluteDir, dirent.name);
+async function removeOldEntries(absoluteDir) {
+  for (const dirent of await readdir(absoluteDir, { withFileTypes: true })) {
+    const direntDir = join(absoluteDir, dirent.name);
 
-			if (dirent.isFile()) await rm(direntDir, { force: true });
-			else if (dirent.isDirectory()) await removeOldEntries(direntDir);
-		}
-	})(__destination);
+    if (dirent.isFile()) {
+      await rm(direntDir, { force: true });
+    } else if (dirent.isDirectory()) {
+      await removeOldEntries(direntDir);
+    }
+  }
 }
 
-let entries = [];
-await (async function searchEntries(absoluteDir) {
-	for (const dirent of await readdir(absoluteDir, { withFileTypes: true })) {
-		const direntDir = join(absoluteDir, dirent.name);
+async function searchEntries(absoluteDir) {
+  let entries = [];
+  for (const dirent of await readdir(absoluteDir, { withFileTypes: true })) {
+    const direntDir = join(absoluteDir, dirent.name);
 
-		if (dirent.isFile()) await entries.push(direntDir);
-		else if (dirent.isDirectory()) await searchEntries(direntDir);
-	}
-})(__source);
+    if (dirent.isFile()) {
+      entries.push(direntDir);
+    } else if (dirent.isDirectory()) {
+      entries.push(...(await searchEntries(direntDir)));
+    }
+  }
+  return entries;
+}
 
-await build({
-	entryPoints: entries,
-	platform: 'node',
-	outdir: __destination,
-	logLevel: 'debug',
-	minify: !isDev,
-	format: 'cjs',
-	outExtension: { '.js': '.cjs' },
-});
+async function editFiles(absoluteDir) {
+  for (const dirent of await readdir(absoluteDir, { withFileTypes: true })) {
+    const direntDir = join(absoluteDir, dirent.name);
 
-(async function editFiles(absoluteDir) {
-	for (const dirent of await readdir(absoluteDir, { withFileTypes: true })) {
-		const direntDir = join(absoluteDir, dirent.name);
+    if (dirent.isFile()) {
+      const fileContent = await readFile(direntDir, 'utf-8');
+      await writeFile(direntDir, fileContent.replace(/\.js\"/gi, '.mjs"'));
+    } else if (dirent.isDirectory()) {
+      await editFiles(direntDir);
+    }
+  }
+}
 
-		if (dirent.isFile()) await writeFile(direntDir, (await readFile(direntDir, 'utf-8')).replace(/\.js\"/gi, '.cjs"'));
-		else if (dirent.isDirectory()) await editFiles(direntDir);
-	}
-})(__destination);
+(async function () {
+  if (existsSync(__destination)) {
+    await removeOldEntries(__destination);
+  }
+
+  const entries = await searchEntries(__source);
+  await build({
+    entryPoints: entries,
+    platform: 'node',
+    outdir: __destination,
+    logLevel: 'debug',
+    minify: !isDev,
+    drop: !isDev ? ['console', 'debugger'] : [],
+    treeShaking: !isDev,
+    mangleQuoted: !isDev,
+    format: 'esm',
+    outExtension: { '.js': '.mjs' },
+  });
+
+  await editFiles(__destination);
+})();

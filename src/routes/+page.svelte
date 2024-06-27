@@ -1,16 +1,8 @@
 <script lang="ts">
-	import { app } from '$stores/app';
+  import app from '$stores/app';
 </script>
 
 <div>
-	The App Fully Loaded!
-
-	<div>
-		App Versions:
-
-		<div>
-			<div>appVersion: {$app.appVersion}</div>
-			<div>electronVersion: {$app.electronVersion}</div>
-		</div>
-	</div>
+  <div><span class="font-light">App Version:</span> {$app.appVersion}</div>
+  <div><span class="font-light">Electron Version:</span> {$app.electronVersion}</div>
 </div>

@@ -1,32 +1,28 @@
 <script lang="ts">
-	import { svgs } from '$libs/functions/__svg';
-	import type { SvgSrc, SvgSrcFolder } from '$types/Svgs';
+  import * as icons from '@mdi/js';
+  import type { Icon } from '$types/Mdi';
 
-	let className: string = '';
+  let className: string = '';
+  export let icon: Icon;
 
-	export let iconClass: string = '';
-	export let src: SvgSrc | `${SvgSrcFolder}/${string}`;
-	export let style: string = '';
-	export { className as class };
+  export let svgClass: string = '';
+  export let svgStyle: string = '';
 
-	const getSvg = async (filepath: string) => {
-		return svgs[filepath].default;
-	};
-
-	// After you import this component
-	// you have to specify the 'src' of the svg
-	// Example: <Svg src="symbols/menu" />
-	// The src is the file path that you defined in '$libs/functions/__svg',
-	// meaning 'symbols' is the folder and 'menu' being the svg file name
-	// no '.svg' needed
+  export let pathClass: string = '';
+  export let pathStyle: string = '';
+  export { className as class };
 </script>
 
 <div class="flex justify-center items-center {className}">
-	{#await getSvg(src) then Svg}
-		<svelte:component
-			this="{Svg}"
-			class="fill-white w-full h-full {iconClass}"
-			style="{style}"
-		/>
-	{/await}
+  <svg
+    viewBox="0 0 24 24"
+    class="fill-white w-full h-full {svgClass}"
+    style="{svgStyle}"
+  >
+    <path
+      class="{pathClass}"
+      style="{pathStyle}"
+      d="{icons[icon]}"
+    ></path>
+  </svg>
 </div>

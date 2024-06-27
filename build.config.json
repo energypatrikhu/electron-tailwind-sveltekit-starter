@@ -1,38 +1,39 @@
 {
-	"appId": "com.electron.tailwind.sveltekit.starter",
-	"productName": "Electron Tailwind Sveltekit Starter",
-	"compression": "maximum",
-	"publish": {
-		"provider": "github",
-		"owner": "EnergyPatrikHU",
-		"repo": "electron-tailwind-sveltekit-starter",
-		"releaseType": "release",
-		"publishAutoUpdate": true
-	},
-	"directories": {
-		"output": "dist"
-	},
-	"win": {
-		"target": "nsis"
-	},
-	"nsis": {
-		"createDesktopShortcut": true,
-		"oneClick": false,
-		"allowToChangeInstallationDirectory": true,
-		"perMachine": true
-	},
-	"files": [
-		"resources/app/**/*.cjs",
-		{
-			"from": "build",
-			"to": ""
-		}
-	],
-	"extraResources": [
-		{
-			"from": "./resources/extraResources/",
-			"to": "",
-			"filter": ["**/*"]
-		}
-	]
+  "appId": "com.electron.tailwind.sveltekit.starter",
+  "productName": "Electron Tailwind Sveltekit Starter",
+  "compression": "maximum",
+  "publish": {
+    "provider": "github",
+    "owner": "EnergyPatrikHU",
+    "repo": "electron-tailwind-sveltekit-starter",
+    "releaseType": "release",
+    "publishAutoUpdate": true
+  },
+  "directories": {
+    "output": "dist"
+  },
+  "win": {
+    "target": "nsis"
+  },
+  "nsis": {
+    "createDesktopShortcut": true,
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "perMachine": true,
+    "menuCategory": "EnergyPatrikHU"
+  },
+  "files": [
+    "resources/app/**/*.mjs",
+    {
+      "from": "build",
+      "to": ""
+    }
+  ],
+  "extraResources": [
+    {
+      "from": "./resources/extraResources/",
+      "to": "",
+      "filter": ["**/*"]
+    }
+  ]
 }
